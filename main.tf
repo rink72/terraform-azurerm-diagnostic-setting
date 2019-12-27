@@ -9,9 +9,15 @@ variable "ds_depends_on" {
   default     = null
 }
 
+locals {
+  # local count variable that determines if diagnostics are deployed or not
+  diag_count = var.enable ? 1 : 0
+}
+
 resource "azurerm_monitor_diagnostic_setting" "diag_setting" {
   name               = var.name
   target_resource_id = var.target_resource_id
+  count = local.diag_count
 
   # log destinations. Currently, we have only implemented log analytics.
   log_analytics_workspace_id = var.log_analytics_workspace_id

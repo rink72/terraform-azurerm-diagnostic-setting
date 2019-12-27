@@ -3,6 +3,11 @@ variable "name" {
     description = "The name of the diagnostic setting"
 }
 
+variable "enable" {
+    type = bool
+    description = "Setting to enable or disable diagnostics."
+}
+
 variable "target_resource_id" {
     type = string
     description = "The resource id of the resource to add diagnostic settings to."
